@@ -19,8 +19,8 @@ public class BaseTest {
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
     }
 
-//    @AfterMethod(alwaysRun = true)
-//    public void tearDown() {
-//        driver.quit();
-//    }
+    @AfterMethod(alwaysRun = true)
+    public void tearDown() {
+        driver.quit();
+    }
 }
