@@ -4,7 +4,8 @@ import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import static pages.CartPage.PRODUCT_IN_THE_CART;
+import static org.testng.Assert.assertEquals;
+import static pages.CartPage.*;
 import static pages.InventoryPage.*;
 
 public class ProductCriticalPathTest extends BaseTest {
@@ -16,7 +17,7 @@ public class ProductCriticalPathTest extends BaseTest {
         String price = inventoryPage.getPriceByName("Sauce Labs Onesie");
         inventoryPage.addToCart("Sauce Labs Onesie");
         cartPage.open();
-        Assert.assertEquals(driver.findElement(By.cssSelector(PRODUCT_IN_THE_CART)).getText(), price, "Prices are not equal");
+        assertEquals(driver.findElement(By.cssSelector(PRODUCT_PRICE_IN_THE_CART)).getText(), price, "Prices are not equal");
     }
 
     @Test
@@ -36,7 +37,7 @@ public class ProductCriticalPathTest extends BaseTest {
         loginPage.login("standard_user", "secret_sauce");
         inventoryPage.addToCart("Sauce Labs Onesie");
         cartPage.open();
-        Assert.assertEquals(driver.findElement(By.cssSelector(PRODUCT_IN_THE_CART)).getText(), "Sauce Labs Onesie", "Item names not matched");
+        assertEquals(driver.findElement(By.cssSelector(PRODUCT_NAME_IN_THE_CART)).getText(), "Sauce Labs Onesie", "Item names not matched");
     }
 
     @Test
@@ -44,15 +45,15 @@ public class ProductCriticalPathTest extends BaseTest {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
         inventoryPage.addToCart("Sauce Labs Onesie");
-        cartPage.open();
         String price = inventoryPage.getPriceByName("Sauce Labs Onesie");
-        Assert.assertEquals(driver.findElement(By.xpath(ADD_PRODUCT_CART_PRICE)), price, "Item prices not matched");
+        cartPage.open();
+        assertEquals(driver.findElement(By.xpath(ADD_PRODUCT_CART_PRICE)).getText(), price, "Item prices not matched");
     }
 
     @Test
-    public void checkItemNameTest() throws InterruptedException {
+    public void checkItemNameTest() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
-        Assert.assertFalse(Boolean.parseBoolean(ITEM_1), ITEM_2);
+        assertEquals(ITEM_1, ITEM_2, "Chosen items not the same");
     }
 }

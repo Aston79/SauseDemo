@@ -9,7 +9,8 @@ import java.util.List;
 public class CartPage extends BasePage {
 
     public static final String TITLE_NAME = "//span[normalize-space()='Products']";
-    public static final String PRODUCT_IN_THE_CART = ".inventory_item_name";
+    public static final String PRODUCT_PRICE_IN_THE_CART = ".inventory_item_price";
+    public static final String PRODUCT_NAME_IN_THE_CART = ".inventory_item_name";
     public static final String PRODUCT_CART_PRICE = "(//div[@class='inventory_details_price'])[1]";
     public static final String CHECKOUT_BUTTON = "checkout";
 
@@ -31,11 +32,11 @@ public class CartPage extends BasePage {
     }
 
     public void getItemsNameInTheCart(String nameProduct) {
-        driver.findElement(By.xpath(String.format(PRODUCT_IN_THE_CART, nameProduct)));
+        driver.findElement(By.xpath(String.format(PRODUCT_PRICE_IN_THE_CART, nameProduct)));
     }
 
     public String getProductCartPrice(String nameProduct) {
-        return driver.findElement(By.xpath(String.format(PRODUCT_CART_PRICE, nameProduct))).getText();
+        return driver.findElement(By.xpath(String.format(PRODUCT_NAME_IN_THE_CART, nameProduct))).getText();
     }
 
     public void checkoutClickButton() {
