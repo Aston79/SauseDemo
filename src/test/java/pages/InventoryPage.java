@@ -14,8 +14,6 @@ public class InventoryPage extends BasePage {
     public static final String ADD_PRODUCT_CART_PRICE = "//div[@class='inventory_item_price']";
 
     public static final By listOfItems = By.className("inventory_item_name");
-    public static final String ITEM_1 = "//div[normalize-space()='Sauce Labs Bolt T-Shirt']";
-    public static final String ITEM_2 = "//div[normalize-space()='Sauce Labs Onesie']";
 
     public InventoryPage(WebDriver driver) {
         super(driver);
@@ -43,13 +41,4 @@ public class InventoryPage extends BasePage {
         return items.size();
     }
 
-    public String checkTheItem1(String nameProduct) {
-        driver.findElement(By.xpath(String.format(ITEM_1, nameProduct)));
-        return nameProduct;
-    }
-
-    public String checkTheItem2(String nameProduct) {
-        driver.findElement(By.xpath(String.format(ITEM_2, nameProduct)));
-        return nameProduct;
-    }
 }

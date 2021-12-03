@@ -50,10 +50,4 @@ public class ProductCriticalPathTest extends BaseTest {
         assertEquals(driver.findElement(By.xpath(ADD_PRODUCT_CART_PRICE)).getText(), price, "Item prices not matched");
     }
 
-    @Test
-    public void checkItemNameTest() {
-        loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
-        assertEquals(ITEM_1, ITEM_2, "Chosen items not the same");
-    }
 }
