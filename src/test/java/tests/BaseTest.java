@@ -35,6 +35,8 @@ public class BaseTest {
         inventoryPage = new InventoryPage(driver);
 
         cartPage = new CartPage(driver);
+
+
     }
 
     @AfterMethod(alwaysRun = true)
