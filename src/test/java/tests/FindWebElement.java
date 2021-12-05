@@ -1,19 +1,25 @@
+package tests;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
+
 import java.util.List;
 import static org.testng.Assert.assertEquals;
 
 public class FindWebElement extends BaseTest {
+    String userNameInputLocByCss = "placeholder='Username']";
+    String passwordInputLocById = "password";
+
 
     @Test
     public void findWebElement() {
 
         driver.get("https://www.saucedemo.com/");
 
-        WebElement userNameInput = driver.findElement(By.name("user-name"));
+//        WebElement userNameInput = driver.findElement(By.name("user-name"));
 
-        WebElement passwordInput = driver.findElement(By.id("password"));
+        WebElement passwordInput = driver.findElement(By.id(passwordInputLocById));
 
         WebElement loginButton = driver.findElement(By.className("input_error form_input"));
 
@@ -37,9 +43,14 @@ public class FindWebElement extends BaseTest {
 
         WebElement elementAncestor = driver.findElement(By.xpath("//*[text()='Enterprise Testing']//ancestor::div"));
 
+        WebElement elementProductPrice = driver.findElement(By.xpath(("//div[normalize-space()='$7.99'])[1])")));
+
 //------------------------------------------------------
 
+
         WebElement elementCssClass = driver.findElement(By.cssSelector(".class\n"));
+
+        WebElement elementCssUserName = driver.findElement(By.cssSelector(userNameInputLocByCss));
 
         WebElement elementCssClass1_2 = driver.findElement(By.cssSelector(".class1.class2\n"));
 
