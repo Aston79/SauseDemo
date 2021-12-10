@@ -16,6 +16,7 @@ public class LoginPage extends BasePage{
 
     public void open() {
         driver.get("https://www.saucedemo.com/");
+        waitForPageLoaded();
     }
 
     public void login(String userName, String password) {
