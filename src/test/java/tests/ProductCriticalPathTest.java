@@ -2,16 +2,36 @@ package tests;
 
 import org.openqa.selenium.By;
 import org.testng.Assert;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import tests.base.BaseTest;
 
 import static org.testng.Assert.assertEquals;
-import static pages.CartPage.*;
-import static pages.InventoryPage.*;
+import static pages.CartPage.PRODUCT_NAME_IN_THE_CART;
+import static pages.CartPage.PRODUCT_PRICE_IN_THE_CART;
+import static pages.InventoryPage.ADD_PRODUCT_CART_PRICE;
 
 public class ProductCriticalPathTest extends BaseTest {
 
-    @Test
-    public void productShouldBeAddedIntoCard() {
+    @DataProvider(name = "loginData")
+    public Object[][] inputForITechTask() {
+        return new Object[][]{
+                {"", "secret_sauce", "Epic sadface: Username is required"},
+                {"standard_user", "", "Epic sadface: Password is required"},
+                {"stanser", "secce", "Epic sadface: Username and password do not match any user in this service"},
+                {"locked_out_user", "secret_sauce", "Epic sadface: Sorry, this user has been locked out."},
+        };
+    }
+
+    @Test (dataProvider = "loginData")
+    public void negativeLoginTest(String userName, String password, String errorMessage){
+        loginPage.open();
+        loginPage.login(userName,password);
+        Assert.assertEquals(loginPage.getErrorMessage(), errorMessage, "Error Message is invalid");
+    }
+
+    @Test(description = "Product should be added to cart")
+    public void productShouldBeAddedIntoCart() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
         String price = inventoryPage.getPriceByName("Sauce Labs Onesie");
@@ -20,7 +40,7 @@ public class ProductCriticalPathTest extends BaseTest {
         assertEquals(driver.findElement(By.cssSelector(PRODUCT_PRICE_IN_THE_CART)).getText(), price, "Prices are not equal");
     }
 
-    @Test
+    @Test(description = "Fill user data field for shipping continue")
     public void userDataFieldForContinueShopping() throws InterruptedException {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
@@ -31,7 +51,7 @@ public class ProductCriticalPathTest extends BaseTest {
         Assert.assertFalse(false, "You are can`t continue shopping");
     }
 
-    @Test
+    @Test(description = "Checking the item name in the cart")
     public void checkTheItemNameInTheCart() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
@@ -40,7 +60,7 @@ public class ProductCriticalPathTest extends BaseTest {
         assertEquals(driver.findElement(By.cssSelector(PRODUCT_NAME_IN_THE_CART)).getText(), "Sauce Labs Onesie", "Item names not matched");
     }
 
-    @Test
+    @Test(description = "Checking the item price in the cart")
     public void checkTheItemPriceInTheCart() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");

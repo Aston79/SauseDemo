@@ -2,22 +2,23 @@ package tests;
 
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
+import tests.base.BaseTest;
 
 import java.io.File;
 
 import static org.testng.Assert.assertEquals;
 
-public class FileUploaderTest extends BaseTest{
+public class FileUploaderTest extends BaseTest {
 
-    @Test
-    public void fileUpload(){
+    @Test(description = "Make upload file to resource")
+    public void fileUpload() {
         driver.get("https://the-internet.herokuapp.com/upload");
 
-        File file= new File("src/test/resources/Frlncr.JPG");
+        File file = new File("src/test/resources/Frlncr.JPG");
         driver.findElement(By.id("file-upload")).sendKeys(file.getAbsolutePath());
 
         driver.findElement(By.id("file-submit")).click();
-        assertEquals(driver.findElement(By.xpath("//div[@class='example']/h3")).getText(),"File Uploaded!", "File not loaded");
+        assertEquals(driver.findElement(By.xpath("//div[@class='example']/h3")).getText(), "File Uploaded!", "File not loaded");
 
     }
 }

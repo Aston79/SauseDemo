@@ -1,18 +1,17 @@
 package tests;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import tests.base.BaseTest;
+import tests.base.Retry;
 
 import static org.testng.Assert.assertEquals;
 import static pages.HerocuDCLocators.FRAME_ATTRIBUTE;
-import static pages.HerocuDCLocators.contentDCLocator;
 
 public class FramesTest extends BaseTest {
 
-    @Test
+    @Test(retryAnalyzer = Retry.class)
     public void contentTest() {
 
         this.driver.get("https://the-internet.herokuapp.com/nested_frames");
@@ -40,4 +39,5 @@ public class FramesTest extends BaseTest {
         Assert.assertEquals(driver.findElement(By.xpath(FRAME_ATTRIBUTE)).getText(), "Your content goes here.", "********  Incorrect assertion  *******");
 
     }
+
 }

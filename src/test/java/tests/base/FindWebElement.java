@@ -1,8 +1,9 @@
-package tests;
+package tests.base;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
+import tests.base.BaseTest;
 
 import java.util.List;
 import static org.testng.Assert.assertEquals;

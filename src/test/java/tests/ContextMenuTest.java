@@ -2,16 +2,15 @@ package tests;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
-import org.testng.Assert;
 import org.testng.annotations.Test;
+import tests.base.BaseTest;
 
 import static org.testng.Assert.assertEquals;
 
 public class ContextMenuTest extends BaseTest {
 
-    @Test
+    @Test(description = "Context menu")
     public void contextMenu() {
         driver.get("https://the-internet.herokuapp.com/context_menu");
         Actions action = new Actions(driver);
