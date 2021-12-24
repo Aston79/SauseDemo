@@ -10,7 +10,7 @@ import static org.testng.Assert.assertEquals;
 
 public class ContextMenuTest extends BaseTest {
 
-    @Test(description = "Context menu")
+    @Test(description = "Context menu assertion")
     public void contextMenu() {
         driver.get("https://the-internet.herokuapp.com/context_menu");
         Actions action = new Actions(driver);

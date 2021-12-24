@@ -11,7 +11,7 @@ import static pages.HerocuDCLocators.FRAME_ATTRIBUTE;
 
 public class FramesTest extends BaseTest {
 
-    @Test(retryAnalyzer = Retry.class)
+    @Test(retryAnalyzer = Retry.class, description = "Check the frames assertion")
     public void contentTest() {
 
         this.driver.get("https://the-internet.herokuapp.com/nested_frames");
@@ -29,7 +29,7 @@ public class FramesTest extends BaseTest {
         assertEquals("BOTTOM", this.driver.findElement(By.tagName("body")).getText());
     }
 
-    @Test
+    @Test(description = "Check the content assertion")
     public void content2Test() {
 
         driver.get("https://the-internet.herokuapp.com/iframe");

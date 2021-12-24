@@ -23,7 +23,7 @@ public class ProductCriticalPathTest extends BaseTest {
         };
     }
 
-    @Test (dataProvider = "loginData")
+    @Test (dataProvider = "loginData", description = "Check the login data and error messages")
     public void negativeLoginTest(String userName, String password, String errorMessage){
         loginPage.open();
         loginPage.login(userName,password);
@@ -40,7 +40,7 @@ public class ProductCriticalPathTest extends BaseTest {
         assertEquals(driver.findElement(By.cssSelector(PRODUCT_PRICE_IN_THE_CART)).getText(), price, "Prices are not equal");
     }
 
-    @Test(description = "Fill user data field for shipping continue")
+    @Test(description = "Fill user data field for shopping continue")
     public void userDataFieldForContinueShopping() throws InterruptedException {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
