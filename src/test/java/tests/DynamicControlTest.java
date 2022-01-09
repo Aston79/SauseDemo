@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 import tests.base.BaseTest;
+import utils.AllureUtils;
 
 import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
@@ -32,6 +33,7 @@ public class DynamicControlTest extends BaseTest {
 
         WebElement inputDisabled2 = driver.findElement(inputDCLocator2);
         assertTrue(inputDisabled2.isEnabled(), "Input available");
+        AllureUtils.takeScreenshot(driver);
     }
 }
 

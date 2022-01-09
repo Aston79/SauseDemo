@@ -25,7 +25,7 @@ public class BaseTest {
     protected WebDriverWait wait;
 
     @Parameters({"browser"})
-    @BeforeMethod
+    @BeforeMethod(description = "Setup and start browser")
     public void setUp(@Optional("chrome") String browser, ITestContext testContext) {
 
         if (browser.equals("chrome")) {
@@ -38,8 +38,8 @@ public class BaseTest {
             driver = new EdgeDriver();
         }
 
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        wait = new WebDriverWait(driver, 10);
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        wait = new WebDriverWait(driver, 5);
         driver.manage().window().maximize();
 
         testContext.setAttribute("driver", driver);
@@ -53,7 +53,7 @@ public class BaseTest {
 
     }
 
-    @AfterMethod(alwaysRun = true)
+    @AfterMethod(alwaysRun = true, description = "Close browser")
     public void tearDown() {
         driver.quit();
     }

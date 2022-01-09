@@ -3,6 +3,7 @@ package tests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import tests.base.BaseTest;
+import utils.AllureUtils;
 
 public class CartPageTest extends BaseTest {
 
@@ -14,6 +15,7 @@ public class CartPageTest extends BaseTest {
         cartPage.open();
         cartPage.removeOneItemFromCart();
         Assert.assertEquals(0, cartPage.listOfItems());
+        AllureUtils.takeScreenshot(driver);
     }
 
     @Test(description = "Add all items to cart and than delete all")
@@ -24,5 +26,6 @@ public class CartPageTest extends BaseTest {
         cartPage.open();
         cartPage.removeAllItemsFromCart();
         Assert.assertEquals(0, cartPage.listOfItems());
+        AllureUtils.takeScreenshot(driver);
     }
 }
