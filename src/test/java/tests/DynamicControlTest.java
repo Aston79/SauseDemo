@@ -15,7 +15,7 @@ public class DynamicControlTest extends BaseTest {
         driver.get("https://the-internet.herokuapp.com/dynamic_controls");
         driver.findElement(By.xpath("(//div[@id='checkbox'])[1]")).click();
         driver.findElement(By.xpath("(//button[normalize-space()='Remove'])[1]")).click();
-        Thread.sleep(1500);
+        wait = new WebDriverWait(driver, 5);
         driver.findElement(By.id("message"));
 
         WebElement inputDisabled = driver.findElement(inputDCLocator);
@@ -24,7 +24,7 @@ public class DynamicControlTest extends BaseTest {
         enableButton.click();
 
         driver.findElement(By.xpath(("//*[@id=\"input-example\"]/button"))).click();
-        Thread.sleep(2000);
+        wait = new WebDriverWait(driver, 5);
 
         driver.findElement(By.xpath("//*[@id='message']"));
 
