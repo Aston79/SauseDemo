@@ -3,14 +3,17 @@ package tests;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
+import tests.base.BaseTest;
+import utils.AllureUtils;
 
-import static org.testng.Assert.*;
+import static org.testng.Assert.assertFalse;
+import static org.testng.Assert.assertTrue;
 import static pages.HerocuDCLocators.*;
 
 public class DynamicControlTest extends BaseTest {
 
 
-    @Test
+    @Test(description = "Dynamic control")
     public void dynamicControl() throws InterruptedException {
         driver.get("https://the-internet.herokuapp.com/dynamic_controls");
         driver.findElement(By.xpath("(//div[@id='checkbox'])[1]")).click();
@@ -30,6 +33,7 @@ public class DynamicControlTest extends BaseTest {
 
         WebElement inputDisabled2 = driver.findElement(inputDCLocator2);
         assertTrue(inputDisabled2.isEnabled(), "Input available");
+        AllureUtils.takeScreenshot(driver);
     }
 }
 
