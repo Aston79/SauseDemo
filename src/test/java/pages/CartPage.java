@@ -1,11 +1,15 @@
 package pages;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.Step;
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import java.util.List;
 
+@Log4j2
 public class CartPage extends BasePage {
 
     public static final String TITLE_NAME = "//span[normalize-space()='Products']";
@@ -16,12 +20,14 @@ public class CartPage extends BasePage {
 
     public static final String REMOVE_BUTTON = "remove-sauce-labs-onesie";
     public static final By listOfItems = By.xpath("//div[@class='cart_item']");
-    public static final By removeButtons = By.xpath("//button[@class='btn_secondary cart_button']");
+    public static final By removeButton = By.xpath("//button[@class='btn_secondary cart_button']");
 
     public CartPage(WebDriver driver) {
         super(driver);
     }
 
+    @Step("The Cart page opening")
+    @Description(value ="Opening cart page")
     public void open() {
         driver.get("https://www.saucedemo.com/cart.html");
     }
@@ -39,16 +45,19 @@ public class CartPage extends BasePage {
         return driver.findElement(By.xpath(String.format(PRODUCT_NAME_IN_THE_CART, nameProduct))).getText();
     }
 
+    @Step("Click on the checkout button")
     public void checkoutClickButton() {
         driver.findElement(By.id(CHECKOUT_BUTTON)).click();
     }
 
+    @Step("Click on the remove button to remove one item from cart")
     public void removeOneItemFromCart() {
         driver.findElement(By.id(REMOVE_BUTTON)).click();
     }
 
+    @Step("Click on the remove button to remove all items from cart")
     public void removeAllItemsFromCart() {
-        List<WebElement> removeButtonsList = driver.findElements(removeButtons);
+        List<WebElement> removeButtonsList = driver.findElements(removeButton);
         for (int i = 0; i < removeButtonsList.size(); i++) {
             removeButtonsList.get(i).click();
         }
